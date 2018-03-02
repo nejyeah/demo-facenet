@@ -1,0 +1,10 @@
+thrift==0.11.0
+gpustat
+tqdm
+scipy
+scikit-learn
+h5py
+matplotlib
+Pillow
+requests
+psutil

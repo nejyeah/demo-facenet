@@ -1,0 +1,25 @@
+services:
+  facenet:
+    build: .
+    container_name: tf_facenet
+    devices:
+    - /dev/nvidia0
+    - /dev/nvidia1
+    - /dev/nvidiactl
+    - /dev/nvidia-uvm
+    - /dev/nvidia-uvm-tools
+    entrypoint:
+    - bash
+    - val_lfw.sh
+    environment:
+    - CUDA_VISIBLE_DEVICES=0
+    - PYTHONPATH=/app/src
+    image: tf/facenet:1.5.00-gpu
+    volumes:
+    - .:/app
+    - /media/data/face/lfw_mtcnn_160:/lfw_mtcnn_160
+    - nvidia_driver_384.111:/usr/local/nvidia:ro
+version: '2'
+volumes:
+  nvidia_driver_384.111:
+    external: true

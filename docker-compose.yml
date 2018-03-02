@@ -1,0 +1,17 @@
+version: '2'
+services:
+  facenet:
+    build: .
+    image: tf/facenet:1.5.00-gpu
+    container_name: tf_facenet
+    volumes:
+      - .:/app 
+      - /media/data/face/lfw_mtcnn_160:/lfw_mtcnn_160
+    environment:
+      - CUDA_VISIBLE_DEVICES=0
+      - PYTHONPATH=/app/src
+    entrypoint:
+      - bash
+      - val_lfw.sh
+      
+  
